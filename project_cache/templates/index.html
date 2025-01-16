@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cache Simulator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Cache Simulator</h1>
+        <!-- Configuration Section -->
+        <h2>Configuration</h2>
+        <label for="addressWidth">Address Width 2^():  </label>
+        <select id="addressWidth">
+            <option value="4">4 bits</option>
+            <option value="6">6 bits</option>
+            <option value="8">8 bits</option>
+            <option value="10">10 bits</option>
+            <option value="12">12 bits</option>
+        </select>
+
+        <label for="cacheSize">Cache Size:</label>
+        <select id="cacheSize">
+            <option value="8">8 bytes</option>
+            <option value="16">16 bytes</option>
+            <option value="32">32 bytes</option>
+            <option value="64">64 bytes</option>
+            <option value="128">128 bytes</option>
+            <option value="256">256 bytes</option>
+            <option value="512">512 bytes</option>
+            <option value="1024">1024 bytes</option>
+        </select>
+
+        <label for="blockSize">Block Size:</label>
+        <select id="blockSize">
+            <option value="2">2 bytes</option>
+            <option value="4">4 bytes</option>
+            <option value="8">8 bytes</option>
+        </select>
+
+        <label for="associativity">Associativity:</label>
+        <select id="associativity">
+            <option value="1">1-way</option>
+            <option value="2">2-ways</option>
+            <option value="4">4-ways</option>
+            <option value="0">Fully Associative</option>
+        </select>
+
+        <label for="replacementPolicy">Replacement Policy:</label>
+        <select id="replacementPolicy">
+            <option value="LRU">Least Recently Used (LRU)</option>
+            <option value="FIFO">First-In-First-Out (FIFO)</option>
+            <option value="Random">Random Replacement</option>
+        </select>
+
+        <button onclick="configureCache()">Generate System</button>
+        <div>
+            <label>
+                <input type="checkbox" id="explainCheckbox"> Explain
+            </label>
+        </div>
+        
+        <div id="explainMessages" style="display: none;">
+            <p id="explainText">Press "Next" to see the explanation.</p>
+            <button id="nextStepButton">Next</button>
+        </div>
+        
+        
+        <!-- Manual Access Section -->
+        <h2>Manual Access</h2>
+        <label for="address">Address:</label>
+        <input type="text" id="address" placeholder="Enter address">
+
+        <label for="data">Data:</label>
+        <input type="text" id="data" placeholder="Enter data (for writes)">
+
+        <div style="display: flex; gap: 10px;">
+            <button onclick="accessMemory('read')">Read</button>
+            <button onclick="accessMemory('write')">Write</button>
+            <button onclick="flushCache()">Flush</button>
+        </div>
+        
+        <!-- batch operation Section -->
+        <h2>Batch Operations</h2>
+        <textarea id="batchInput" placeholder="Enter operations (one per line, e.g., READ 0x0, WRITE 0x2 0xA)"></textarea>
+        <br />
+        <button onclick="processBatch()">Run Batch</button>
+        <div id="batchResult"></div>
+
+
+        <!-- Cache Statistics Section -->
+        <div class="cache-stats">
+            <h2>Cache Statistics</h2>
+            <p>Cache Hits: <span id="hits">0</span></p>
+            <p>Cache Misses: <span id="misses">0</span></p>
+        </div>
+
+        <!-- Cache Contents Table Section -->
+        <div class="cache-grid">
+            <h2>Cache Contents</h2>
+            <div class="memory-scroll-box">
+                <table id="cacheTable" class="memory-table"></table>
+            </div>
+        </div>
+
+        <h2>Physical Memory</h2>
+        <div class="memory-container">
+            <div class="memory-scroll-box">
+                <table id="physicalMemoryTable" class="memory-table"></table>
+            </div>
+        </div>        
+
+        <!-- Performance Metrics Section -->
+        <div id="performanceMetrics" class="cache-stats">
+            <h2>Performance Metrics</h2>
+            <div id="amat">Average Memory Access Time (AMAT): <span id="amatValue">N/A</span></div>
+        </div>
+
+        <div class="performance-graph">
+            <h2>Performance Metrics Graph</h2>
+            <canvas id="performanceChart"></canvas>
+        </div>
+        
+
+        <!-- History Section -->
+        <h2>History</h2>
+        <div id="historyBox" style="overflow-y: scroll; height: 150px; border: 1px solid #ccc; padding: 10px;"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,205 @@
+/* General Styles */
+body {
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 14px;
+    color: #333;
+}
+
+.container {
+    width: 1200px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 18px;
+    color: #666;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+/* Input and Button Styles */
+label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+    color: #444;
+}
+
+input[type="number"],
+input[type="text"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Result Styles */
+.result {
+    margin-top: 15px;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.result.hit {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.result.miss {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Cache Statistics Styles */
+.cache-stats {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.cache-stats p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+
+/* Memory Table Styles */
+.memory-table,
+.cache-table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+.memory-table th, 
+.memory-table td,
+.cache-table th,
+.cache-table td {
+    border: 1px solid #ccc;
+    padding: 5px;
+    text-align: center;
+    width: 50px; /* Makes cells uniform */
+}
+
+.memory-table th,
+.cache-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Highlight style for cache cells and memory rows */
+.highlight-cache-cell {
+    background-color: #FFDDC1; /* Light orange for cache cells */
+    font-weight: bold;
+}
+
+.highlight-memory-row {
+    background-color: #C1E1FF; /* Light blue for physical memory rows */
+    font-weight: bold;
+}
+/* Dynamic Highlight for Cache and Memory Rows */
+.highlight-row {
+    background-color: #FFDDC1; /* Light orange highlight */
+    font-weight: bold;
+    transition: background-color 0.5s ease-in-out; /* Smooth transition effect */
+}
+.memory-container {
+    display: flex;
+    flex-direction: column;
+}
+.highlight-row {
+    background-color: #C1E1FF !important; /* Light blue for rows */
+    font-weight: bold;
+    transition: background-color 0.5s ease;
+}
+
+.highlight-cache-cell {
+    background-color: #FFDDC1 !important; /* Light orange for cells */
+    font-weight: bold;
+    transition: background-color 0.5s ease;
+}
+
+/* Scrollable box for Physical Memory */
+.memory-scroll-box {
+    height: 200px;       /* Fixed height */
+    max-height: 200px;   /* Ensure it doesn’t expand beyond this */
+    overflow-y: auto;    /* Enable vertical scrolling */
+    overflow-x: hidden;  /* Hide horizontal scrolling */
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+.memory-table tr:hover, 
+.cache-table tr:hover {
+    background-color: #f5f5f5; /* Light gray on hover */
+    cursor: default;          /* Change cursor to indicate non-clickable */
+}
+
+#explainMessages {
+    display: none; /* Initially hidden */
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+#nextStepButton {
+    margin-top: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+#nextStepButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
